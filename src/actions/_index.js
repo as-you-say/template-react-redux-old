@@ -1,15 +1,7 @@
-const CHOOSE_COLOR = 'CHOOSE_COLOR';
-const chooseColor = (color) => ({
-  type: CHOOSE_COLOR,
-  payload: {
-    color,
-  },
-});
+import API from '../apis/_index';
 
-const CHANGE_UI = 'CHANGE_UI';
-const changeUI = (color) => ({
-  type: CHANGE_UI,
-  payload: {
-    color,
-  },
+export const GET_USERS = 'GET_USERS';
+export const getUsers = () => ({
+  type: GET_USERS,
+  payload: API.getUsers(),
 });

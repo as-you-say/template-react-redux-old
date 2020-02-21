@@ -8,9 +8,7 @@ const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
   mode,
-  entry: {
-    main: './src/index.js'
-  },
+  entry: ['@babel/polyfill', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'nginx/html'),
     filename: 'bundle.js',
@@ -44,9 +42,6 @@ module.exports = {
           presets: [
             '@babel/preset-env',
             '@babel/preset-react'
-          ],
-          plugins: [
-            'babel-plugin-redux-saga'
           ]
         }
       },

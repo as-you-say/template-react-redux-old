@@ -1,14 +1,20 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ReduxPromise from 'redux-promise';
 
-import rootReducer from './reducers';
-import rootSaga from './sagas';
+import reducers from './reducers/_index';
 
-const sagaMiddleware = createSagaMiddleware();
+import List from './components/List';
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware)
-);
 
-sagaMiddleware.run(rootSaga);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <List />
+  </Provider>,
+  document.getElementById('root')
+)
